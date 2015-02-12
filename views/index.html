@@ -2,27 +2,39 @@
 
 {% block content %}
 
-  <div class="page-header">
-    <h1>Welcome to Twitter.js, Nimit!</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
-      <b>Your Name</b><br>
-      100 followers
-    </div>
-    <div class="col-md-9">
+<div class="page-header">
+	<h1>Welcome to Twitter.js, Nimit!</h1>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"><br>
+		<b>Your Name</b><br>
+		100 followers
+		<br><br>
+		{% if showForm %}
+	  <form action="/submit" method="POST">
+			<label for="name_field">Name:</label>
+			<input name="name" type="text" id="name_field" /> <br>
 
-      <!-- display tweets here -->
-      {% for tweet in tweets %}
-      <!-- TODO: style -->
-        <li><img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg">
-        <a href="/users/{{tweet.name}}"><b>{{tweet.name}}</b></a> <br>
-        <a href="/users/{{tweet.name}}/tweets/{{tweet.id}}">{{tweet.text}}</a> <br>
-        <a href="#">Retweet</a></li>
-      {% endfor %}
+			<label for="text_field">Text:</label>
+			<input name="text" type="text" id="text_field" style="width: 350px;" />
 
-    </div>
-  </div>
+			<input type="submit" value="Submit" />
+		</form>
+		{% endif %}
+</div>
+<div class="col-md-9">
+
+	<!-- display tweets here -->
+	{% for tweet in tweets %}
+	<!-- TODO: style -->
+	<li><img src="https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg">
+		<a href="/users/{{tweet.name}}"><b>{{tweet.name}}</b></a> <br>
+		<a href="/users/{{tweet.name}}/tweets/{{tweet.id}}">{{tweet.text}}</a> <br>
+		<a href="#">Retweet</a></li>
+		{% endfor %}
+
+	</div>
+</div>
 
 {% endblock %}
