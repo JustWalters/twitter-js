@@ -31,14 +31,14 @@ router.get('/', function (req, res) {
 router.get('/users/:name', function(req, res) {
   var name = req.params.name,
   	list = tweetBank.find( {name: name} );
-  res.render( 'index', { title: 'Twitter.js - Posts by ' + name, tweets: list } );
+  res.render( 'index', { title: 'Twitter.js - Posts by ' + name, tweets: list, name: name, showForm: true } );
 });
 
 router.get('/users/:name/tweets/:id', function(req, res) {
 	var name = req.params.name,
 		id = req.params.id,
 		list = tweetBank.find({name: name, id: parseInt(id)});
-	res.render( 'index', { title: 'Twitter.js - Single post by ' + name, tweets: list } );
+	res.render( 'index', { title: 'Twitter.js - Single post by ' + name, tweets: list, name: name, showForm: true } );
 });
 
 router.get('/*', function(req, res){
