@@ -1,9 +1,13 @@
 var _ = require('underscore');
 
 var data = [];
+var generateId = function(){
+	var LARGE_NUM = 600000000;
+	return Math.floor(Math.random() * LARGE_NUM);
+};
 
 var add = function (name, text) {
-  data.push({ name: name, text: text });
+  data.push({ name: name, text: text, id: generateId() });
 };
 
 var list = function () {
